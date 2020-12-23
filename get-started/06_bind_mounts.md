@@ -39,9 +39,13 @@ To run our container to support a development workflow, we will do the following
 
 So, let's do it!
 
-1. Make sure you don't have any previous `getting-started` containers running.
+1. Make sure you don't have any previous `getting-started` containers running. Also make sure your terminal is inside the /app directory. If you are using powershell, it might look like this:
 
-1. Run the following command. We'll explain what's going on afterwards:
+```
+    PS C:\Growth\Dockers\getting-started-master\app>
+```
+
+2. Run the following command. We'll explain what's going on afterwards:
 
     ```bash
     docker run -dp 3000:3000 \
