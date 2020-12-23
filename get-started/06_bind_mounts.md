@@ -43,22 +43,18 @@ So, let's do it!
 
 1. Run the following command. We'll explain what's going on afterwards:
 
-    ```bash
-    docker run -dp 3000:3000 \
+        docker run -dp 3000:3000 \
         -w /app -v "$(pwd):/app" \
         node:12-alpine \
         sh -c "yarn install && yarn run dev"
-    ```
-
+    
     If you are using PowerShell then use this command.
 
-    ```powershell
-    docker run -dp 3000:3000 `
+        docker run -dp 3000:3000 `
         -w /app -v "$(pwd):/app" `
         node:12-alpine `
         sh -c "yarn install && yarn run dev"
-    ```
-
+    
     - `-dp 3000:3000` - same as before. Run in detached (background) mode and create a port mapping
     - `-w /app` - sets the "working directory" or the current directory that the command will run from
     - `-v "$(pwd):/app"` - bind mount the current directory from the host in the container into the `/app` directory
@@ -67,29 +63,25 @@ So, let's do it!
       running `yarn install` to install _all_ dependencies and then running `yarn run dev`. If we look in the `package.json`,
       we'll see that the `dev` script is starting `nodemon`.
 
-1. You can watch the logs using `docker logs -f <container-id>`. You'll know you're ready to go when you see this...
-
-    ```bash
-    docker logs -f <container-id>
-    $ nodemon src/index.js
-    [nodemon] 1.19.2
-    [nodemon] to restart at any time, enter `rs`
-    [nodemon] watching dir(s): *.*
-    [nodemon] starting `node src/index.js`
-    Using sqlite database at /etc/todos/todo.db
-    Listening on port 3000
-    ```
+1. You can watch the logs using `docker logs -f <container-id>`. You'll know you're ready to go when you see this...:
+   
+        docker logs -f <container-id>
+        $ nodemon src/index.js
+        [nodemon] 1.19.2
+        [nodemon] to restart at any time, enter `rs`
+        [nodemon] watching dir(s): *.*
+        [nodemon] starting `node src/index.js`
+        Using sqlite database at /etc/todos/todo.db
+        Listening on port 3000
 
     When you're done watching the logs, exit out by hitting `Ctrl`+`C`.
 
 1. Now, let's make a change to the app. In the `src/static/js/app.js` file, let's change the "Add Item" button to simply say
    "Add". This change will be on line 109.
 
-    ```diff
-    -                         {submitting ? 'Adding...' : 'Add Item'}
-    +                         {submitting ? 'Adding...' : 'Add'}
-    ```
-
+        -                         {submitting ? 'Adding...' : 'Add Item'}
+        +                         {submitting ? 'Adding...' : 'Add'}
+    
 1. Simply refresh the page (or open it) and you should see the change reflected in the browser almost immediately. It might
    take a few seconds for the Node server to restart, so if you get an error, just try refreshing after a few seconds.
 
